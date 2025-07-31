@@ -27,7 +27,8 @@ if command -v docker &> /dev/null; then
     echo "✅ Docker is already installed."
 else
     echo "🐳 Installing Docker Engine..."
-    sudo dnf config-manager --addrepo https://download.docker.com/linux/fedora/docker-ce.repo
+    ##sudo dnf config-manager --addrepo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     sudo systemctl start docker
     sudo systemctl enable docker
