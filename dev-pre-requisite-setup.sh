@@ -57,6 +57,30 @@ else
     echo "✅ Golang installed."
 fi
 
+# --- OpenShift CLI (oc) Installation ---
+if command -v oc &> /dev/null; then
+    echo "✅ OpenShift CLI (oc) client is already installed."
+else
+    echo "☸️ Installing OpenShift CLI (oc) client..."
+    # To ensure the latest stable version, we use the 'stable' directory
+    # which is a symbolic link to the latest release.
+    OC_URL="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/openshift-client-linux.tar.gz"
+    
+    echo "Downloading client from $OC_URL..."
+    wget -qO /tmp/openshift-client-linux.tar.gz "$OC_URL"
+
+    echo "Extracting 'oc' binary..."
+    sudo tar -C /usr/local/bin -xzf /tmp/openshift-client-linux.tar.gz oc
+
+    # Clean up the downloaded archive
+    rm /tmp/openshift-client-linux.tar.gz
+
+    echo "Ensuring 'oc' is executable..."
+    sudo chmod +x /usr/local/bin/oc
+
+    echo "✅ OpenShift CLI (oc) client installed."
+fi
+
 echo
 echo "🎉 System setup complete!"
 echo "----------------------------------------------------------------------"
