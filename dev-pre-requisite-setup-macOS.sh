@@ -106,10 +106,20 @@ else
     echo "✅ Golang installed."
 fi
 
+# --- OpenShift CLI (oc) Installation ---
+echo "--- Checking for OpenShift CLI (oc) client..."
+if command -v oc &> /dev/null; then
+    echo "✅ OpenShift CLI (oc) client is already installed."
+else
+    echo "Installing OpenShift CLI (oc) client..."
+    brew install openshift-cli
+    echo "✅ OpenShift CLI (oc) client installed."
+fi
+
 echo ""
 # --- Verification Check ---
 echo "--- Final verification of installed tools..."
-for cmd in git make wget openssl ifconfig dig nslookup which ps top gettext python3.11 pip3 code go; do
+for cmd in git make wget openssl ifconfig dig nslookup which ps top gettext python3.11 pip3 code go oc; do
   if command -v "$cmd" >/dev/null 2>&1; then
     echo "✅ $cmd is installed"
   else
