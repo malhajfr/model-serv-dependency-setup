@@ -2,7 +2,7 @@
 #
 # This script installs all necessary system-wide dependencies.
 # It is safe to re-run and will not reinstall existing software.
-#
+# Test
 
 # Exit immediately if any command fails.
 set -e
